@@ -1,0 +1,54 @@
+install.packages("tidyverse")
+library(tidyverse)
+read_csv("dailyActivity_merged.csv")
+data(dailyActivity_merged)
+daily_activity <- dailyActivity_merged
+head(daily_activity)
+colnames(daily_activity)
+summarise(daily_activity, mean_VeryActiveMinutes = mean(VeryActiveMinutes))
+rename(daily_activity, ActivityDate = activity_date, TotalSteps = total_steps, TotalDistance = total_distance)
+rename(daily_activity, ActivityDate = activity_date)
+rename(daily_activity, TotalSteps = total_steps)
+rename(daily_activity, activity_date = ActivityDate)
+rename(daily_activity, total_steps = TotalSteps, total_distance = TotalDistance, tracker_distance = TrackerDistance, logged_activities_distance = LoggedActivitiesDistance, very_active_distance = VeryActiveDistance, moderately_active_distance = ModeratelyActiveDistance, light_active_distance = LightActiveDistance, sedentary_active_distance = SedentaryActiveDistance, very_active_minutes = VeryActiveDistance, fairly_active_minutes = FairlyActiveMinutes)
+rename(daily_activity, lightly_active_minutes = LightlyActiveMinutes, sedentary_minutes = SedentaryMinutes, calories = Calories)
+str(daily_activity)
+arrange(daily_activity, "very_active_minutes")
+print(n = n)
+arrange(daily_activity, "total_steps")
+daily_activity_v2 <- arrange(daily_activity, "total_steps")
+head(daily_activity_v2)
+max(daily_activity$VeryActiveMinutes)
+min(daily_activity$VeryActiveMinutes)
+mean(daily_activity$VeryActiveDistance)
+mean(daily_activity$VeryActiveMinutes)
+
+ggplot(data=daily_activity,mapping=aes(x=TotalSteps, y=VeryActiveDistance)) + geom_point()
+
+ggplot(data=daily_activity)+
+  geom_point(mapping=aes(x=TotalSteps,y=VeryActiveDistance),color="blue")
+
+ggplot(data=daily_activity)+
+  geom_smooth(mapping=aes(x=TotalSteps,y=VeryActiveDistance),color="black")+
+  geom_point(mapping=aes(x=TotalSteps,y=VeryActiveDistance),color="blue")
+
+ggplot(data=daily_activity)+
+  geom_jitter(mapping=aes(x=TotalSteps,y=VeryActiveDistance),color="blue")
+
+ggplot(data=daily_activity)+
+  geom_smooth(mapping=aes(x=TotalSteps,y=VeryActiveDistance),color="blue")+
+  xlab("Total Steps")+
+  ylab("Very Active Distance")
+
+ggplot(data=daily_activity)+
+  geom_smooth(mapping=aes(x=TotalSteps,y=VeryActiveMinutes),color="blue")+
+  xlab("Total Steps")+
+  ylab("Very Active Minutes")
+
+ggplot(data=daily_activity)+
+  geom_smooth(mapping=aes(x=TotalSteps,y=Calories),color="blue")+
+  xlab("Total Steps")
+
+cor(daily_activity$TotalSteps,daily_activity$VeryActiveMinutes,use="complete.obs")
+cor(daily_activity$TotalSteps,daily_activity$VeryActiveDistance,use="complete.obs")
+cor(daily_activity$TotalSteps,daily_activity$Calories,use="complete.obs")
